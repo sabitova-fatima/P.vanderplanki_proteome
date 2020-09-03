@@ -15,39 +15,23 @@ patients_in <- sapply(temp, read_docx)
 ################## ПОСТУПЛЕНИЕ #####################
 
 for(i in 1:length(temp)){
-
 patients$шифр[i] <- str_sub(temp[i], start = 1, end = -6)
-
 patients$рост[i] <- str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "Рост"))[1]], "[:digit:][:digit:][:digit:]")
-
 patients$вес[i] <- str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "Вес"))[1]], "[:digit:][:digit:]\\s")
-
 patients$сахарный_диабет[i] <- str_sub(patients_in[[i]][which(str_detect(patients_in[[i]], "Сахарный"))[1]], start = 17, end = -1)
-
 patients$Систолическое_давление[i] <- str_sub(str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "Систолическое"))[1]], "Систолическое\\sдавление..............."),  start = 24, end = 27)
-
 patients$Диастолическое_давление[i] <- str_sub(str_extract((patients_in[[i]][which(str_detect(patients_in[[i]], "Диастолическое"))[1]]), "Диастолическое\\sдавление:.............."), start = 26, end = 28)
-
 patients$ЧСС[i] <- str_sub(str_extract((patients_in[[i]][which(str_detect(patients_in[[i]], "ЧСС"))[1]]), "ЧСС:\\s........"), start = 6, end = 8)
-
 patients$общее_состояние[i] <- str_sub(patients_in[[i]][which(str_detect(patients_in[[i]], "Общее состояние"))[1]], start = 18, end = 35)
-
 patients$сознание[i] <- str_sub(str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "Общее состояние"))[1]], "Сознание.................."), start = 10, end = 16)
-
 patients$ЧДД[i] <- str_sub(str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "ЧДД"))[1]], "ЧДД: ......."), start = 5, end = 8)
-
 patients$spo2[i] <- str_sub(str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "SPO2"))[1]], "SPO2:....."), start = 6, end = -3)
-
 patients$NEWS[i] <- str_extract(patients_in[[i]][which(str_detect(patients_in[[i]], "NEWS"))[1]], "NEWS.....")
-
 patients$дата_рождения[i] <- str_sub(patients_in[[i]][which(str_detect(patients_in[[i]], "Дата рождения"))[1]], start = 16, end = 25) 
-
 patients$возраст[i] <- str_sub(patients_in[[i]][which(str_detect(patients_in[[i]], "Дата рождения"))[1]], start = 27, end = 29) 
-
 patients$дата_поступления[i] <- str_sub(patients_in[[i]][which(str_detect(patients_in[[i]], "Дата поступления"))[1]], start = 31, end = -8) 
-
 patients$время_поступления[i] <- str_sub(patients_in[[i]][which(str_detect(patients_in[[i]], "Дата поступления"))[1]], start = 41, end = -3) 
-
+  
 }
 
 ################## КОЛИЧЕСТВО ДНЕЙ #####################
@@ -124,6 +108,7 @@ for(j in 1:length(temp)) {
 ALL_DATA <- ALL_DATA[-1,]
 
 
+################## СОХРАНЕНИЕ #####################
 write.xlsx(patients, "поступление_6.xlsx")
 write.xlsx(patients_days_for_print, "количество_дней_6.xlsx")
 write.xlsx(ALL_DATA, "стационар6.xlsx")
