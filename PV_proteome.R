@@ -1,5 +1,7 @@
 setwd("C:/Users/User/Desktop/NEW_COURSEWORK")
 
+####### Adding packages #########
+
 library(limma)
 library(tidyverse)
 library(readxl)
@@ -12,7 +14,7 @@ The_Proteome <- read_excel("fixed_proteome.xlsx")
 The_Proteome$coefficients <- log2(The_Proteome$fc)
 write.csv(The_Proteome, "The_Proteome.csv")
 
-####### Exploratory analysis #########
+####### Exploratory data analysis #########
 
 #Смотрим, сколько p-value ниже 0,05
 nrow(filter(The_Proteome, Good_p_value == TRUE)) #2233
@@ -44,8 +46,6 @@ ggplot(The_Proteome, aes(y = coefficients)) +
   labs(x = "log2 Fold Change", y = "Количество")+
   coord_flip()
 
-The_Proteome_up
-
 # Volcano plot со всеми белками
 ggplot(The_Proteome) +
   aes(x = coefficients, y = minus_log10pvalue, color = Good_p_value) +
@@ -55,8 +55,6 @@ ggplot(The_Proteome) +
   scale_colour_discrete(name  ="P-value",
                         breaks=c("FALSE", "TRUE"),
                         labels=c("> 0.05", "< 0.05"))
-
-The_Proteome_HSP$if_HSP <- 
 
 # Насколько fold change зависит от длины? 
 ggplot(The_Proteome, aes(coefficients, Length))+
@@ -95,8 +93,6 @@ Interpro <- read.csv("Interpro.csv")
 #$ coefficients <dbl> -14.4500, 44.4250, -11.7250, 
 #$ functions    <fct> "IPR021418: THO complex, subunitTHOC2, C-terminal "
 
-Interpro
-
 # Mean fold change
 mean_fc <- Interpro %>% 
   group_by(functions) %>% summarise(mean = mean(coefficients), count = n()) %>% arrange(mean) 
@@ -123,7 +119,7 @@ ggplot(mean_fc[1:100, ], aes(x = functions, y = mean_z, label = mean_z))+
   ylim(-5, 2.5) +
   coord_flip()
 
-nrow(mean_fc) # 3465 неужели так много разных функций?! 
+nrow(mean_fc) # 3465 
 
 # посмотрим, какие функции выполняют самые сильно изменившиеся белки
 upreg <- filter(Interpro, coefficients > 100)
@@ -185,10 +181,6 @@ ggplot(mean_fold_change_arr[1:100, ], aes(x = func, y = mean_z, label = mean_z))
   ylim(-2.5, 2.5) +
   coord_flip()
 # увы, наблюдений слишком много, чтобы вместить их в один график
-
-###
-
-
 
 # посмотрим, какие функции выполняют самые сильно изменившиеся белки
 upreg <- filter(Simple_proteome, coefficients > 100)
