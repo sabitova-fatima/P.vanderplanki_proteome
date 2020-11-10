@@ -23,4 +23,8 @@
 Окончательные графики сделаны в среде R с помощью пакета ggplot2
 
 
-https://github.com/sabitova-fatima/P.vanderplanki_proteome/blob/master/plots/All%20proteins%20volcano.png
+![Volcano-plot всех белков](https://github.com/sabitova-fatima/P.vanderplanki_proteome/blob/master/plots/All%20proteins.png)
+
+![Изменение экпрессии, сгруппированное по функциям](https://github.com/sabitova-fatima/P.vanderplanki_proteome/blob/master/plots/Mean%20of%20all%20functions.png)
+
+![Белки, снизившие экспрессию](https://github.com/sabitova-fatima/P.vanderplanki_proteome/blob/master/plots/Downregulated%20proteins%20by%20their%20molecular%20functions.png)
