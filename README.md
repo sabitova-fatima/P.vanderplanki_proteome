@@ -23,3 +23,4 @@
 Окончательные графики сделаны в среде R с помощью пакета ggplot2
 
 
+https://github.com/sabitova-fatima/P.vanderplanki_proteome/blob/master/plots/All%20proteins%20volcano.png
